@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <style>
+        .chess-board {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        .chess-board th {
+            padding: .5em;
+        }
+
+        .chess-board td {
+            border: 1px solid;
+            width: 2em;
+            height: 2em;
+        }
+
+        .chess-board .light {
+            background: #eee;
+        }
+
+        .chess-board .dark {
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="chess-board">
+        <tbody>
+            <tr>
+                <th></th>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>e</th>
+                <th>f</th>
+                <th>g</th>
+                <th>h</th>
+            </tr>
+            <tr>
+                <th>8</th>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                <th>7</th>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td class="dark" name="a1"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+                <td class="dark"></td>
+                <td class="light"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>
+        {% for znak, figura in wszystkie.items() %}
+        {{ figura }}
+        {% endfor %}
+    </h2>
+
+    <form action="submit_form2" method="post" class="reveal-content">
+        <div class="row">
+            <div class="col-md-7">
+                <h3>wybierz figurę</h3>
+                <div class="form-group">
+                    <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
+                    <select name="trener" style="width: 25% ; height: 40px;" class="form-control">
+                        <option value="" disabled selected>wybierz figurę</option>
+                        <option value="King" name="king">King</option>
+                        <option value="Queen" name="queen">Queen</option>
+                        <option value="Rock" name="rock">Rock</option>
+                        <option value="Knight" name="knight">Knight</option>
+                        <option value="Bishop" name="bishop">Bishop</option>
+                        <option value="Pawn" name="pawn">Pawn</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
+                    <select name="trener" style="width: 25% ; height: 40px;" class="form-control">
+                        <option value="" disabled selected>wybierz pole gdzie staniesz</option>
+                        <option value="a" name="a">a</option>
+                        <option value="b" name="b">b</option>
+                        <option value="c" name="c">c</option>
+                        <option value="d" name="d">d</option>
+                        <option value="e" name="e">e</option>
+                        <option value="f" name="f">f</option>
+                        <option value="g" name="g">g</option>
+                        <option value="h" name="h">h</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
+                    <select name="trener" style="width: 25% ; height: 40px;" class="form-control">
+                        <option value="" disabled selected>wybierz pole gdzie staniesz</option>
+                        <option value="1" name="1">1</option>
+                        <option value="2" name="2">2</option>
+                        <option value="3" name="3">3</option>
+                        <option value="4" name="4">4</option>
+                        <option value="5" name="5">5</option>
+                        <option value="6" name="6">6</option>
+                        <option value="7" name="7">7</option>
+                        <option value="8" name="8">8</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+            <textarea name="message" class="form-control" rows="5" placeholder="Enter your message"></textarea>
+          </div> -->
+            <div style="clear: both;"> </div>
+            <div class="form-group">
+                <button type="submit" name='wyslij' class="btn btn-default btn-lg"
+                    style="margin: top 5px;">Send</button>
+            </div>
+        </div>
+        </div>
+    </form>
+
+</body>
+
+</html>
