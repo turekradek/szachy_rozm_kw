@@ -1,7 +1,9 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 from abc import ABC, abstractmethod
 import chess
 import json
+from io import StringIO
+
 
 app = Flask(__name__)
 
@@ -9,7 +11,39 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     figura = chess.square_name(63)
-    return render_template("index.html", krol=krol.unicode_symbol(), wszystkie=wszystkie_figury())
+    return render_template("index.html", krol=krol.unicode_symbol(),
+                           wszystkie=wszystkie_figury())  # , tekst=jsonify({'tasks': tasks}))
+
+@app.route('/submit_form', methods=['POST', 'GET'])
+def submit_form():  # reszta do naszego cwiczenia nie potrzebna
+    # error = None
+    if request.method == 'POST':
+        try:
+            data = request.form.to_dict()
+            pole = data['pole1']+data['pole2'] #request('TAK JAKBY WYSŁANE')
+            figura = wszystkie_figury()[data['figura'][0]]
+            return render_template("index.html", krol=krol.unicode_symbol(),
+                           wszystkie=wszystkie_figury())  # , tekst=jsonify({'tasks':
+            # return f'<h1>{pole}{figura} </h1>'  #request('TAK JAKBY WYSŁANE')
+        except:
+            return 'did not save to database'
+    else:
+        return 'coś nie halo wez jeszcze raz'
+
+tasks = [
+    {
+        'id': 1,
+        'title': u'Buy groceries',
+        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
+        'done': False
+    },
+    {
+        'id': 2,
+        'title': u'Learn Python',
+        'description': u'Need to find a good Python tutorial on the web',
+        'done': False
+    }
+]
 
 
 def wszystkie_figury():
@@ -74,7 +108,7 @@ class Figure(ABC):
         board.push(figura)
         board.push(figura2)
         print(board)
-        return list(board.pseudo_legal_moves)
+        return board.pseudo_legal_moves
 
     def validate_move(self, na_pole):
         def __init__(self, na_pole):
@@ -96,125 +130,130 @@ class King(Figure):
 
     def to_json(self):
         return {
-            "availableMoves": self.list_available_moves(),
+            "availableMoves": list(self.list_available_moves()),
             "error": None,
             "figure": self.nazwa_figury(),
             "currentField": self.square,
         }
 
 
-class Queen(Figure):
-    def __init__(self, square, na_pole, piece=5):
-        super().__init__(square, na_pole, piece)
-        self.square = square
-        self.piece = piece
-        self.na_pole = na_pole
-
-    def symbol_piece(self):
-        return chess.PieceType(5)  # symbol figury
-
-    def to_json(self):
-        return {
-            "availableMoves": self.list_available_moves(),
-            "error": None,
-            "figure": self.nazwa_figury(),
-            "currentField": self.square,
-        }
-
-
-class Rock(Figure):
-    def __init__(self, square, na_pole, piece=4):
-        super().__init__(square, na_pole, piece)
-        self.square = square
-        self.piece = piece
-        self.na_pole = na_pole
-
-    def symbol_piece(self):
-        return chess.PieceType(4)  # symbol figury
-
-    def to_json(self):
-        return {
-            "availableMoves": self.list_available_moves(),
-            "error": None,
-            "figure": self.nazwa_figury(),
-            "currentField": self.square,
-        }
-
-
-class Bishop(Figure):
-    def __init__(self, square, na_pole, piece=3):
-        super().__init__(square, na_pole, piece)
-        self.square = square
-        self.piece = piece
-        self.na_pole = na_pole
-
-    def symbol_piece(self):
-        return chess.PieceType(3)  # symbol figury
-
-    def to_json(self):
-        return {
-            "availableMoves": self.list_available_moves(),
-            "error": None,
-            "figure": self.nazwa_figury(),
-            "currentField": self.square,
-        }
-
-
-class Knight(Figure):
-    def __init__(self, square, na_pole, piece=2):
-        super().__init__(square, na_pole, piece)
-        self.square = square
-        self.piece = piece
-        self.na_pole = na_pole
-
-    def symbol_piece(self):
-        return chess.PieceType(2)  # symbol figury
-
-    def to_json(self):
-        return {
-            "availableMoves": self.list_available_moves(),
-            "error": None,
-            "figure": self.nazwa_figury(),
-            "currentField": self.square,
-        }
-
-
-class Pawn(Figure):
-    def __init__(self, square, na_pole, piece=1):
-        super().__init__(square, na_pole, piece)
-        self.square = square
-        self.piece = piece
-        self.na_pole = na_pole
-
-    def symbol_piece(self):
-        return chess.PieceType(1)  # symbol figury
-
-    def to_json(self):
-        return {
-            "availableMoves": self.list_available_moves(),
-            "error": None,
-            "figure": self.nazwa_figury(),
-            "currentField": self.square,
-        }
-
-
-def to_json(obj):
-    return json.dumps(obj.to_json())
+def slownik_to_json(slownik):
+    return json.dumps(slownik.to_json())
 
 
 krol = King("a3", "a4")
 board = chess.Board()
-# krolowa = Queen("d6", "a3")
-print(krol.to_json())
 print(krol.list_available_moves(), krol.uci_valide_move())
 print(krol.uci_valide_move() in krol.list_available_moves())
 print(krol.unicode_symbol())
+print(chess.UNICODE_PIECE_SYMBOLS)
+print( krol.to_json())
+for el in krol.to_json().items():
+    print( el )
+
+
+
+
+# print(to_json(krol))
+#
+#
+# class Queen(Figure):
+#     def __init__(self, square, na_pole, piece=5):
+#         super().__init__(square, na_pole, piece)
+#         self.square = square
+#         self.piece = piece
+#         self.na_pole = na_pole
+#
+#     def symbol_piece(self):
+#         return chess.PieceType(5)  # symbol figury
+#
+#     def to_json(self):
+#         return {
+#             "availableMoves": self.list_available_moves(),
+#             "error": None,
+#             "figure": self.nazwa_figury(),
+#             "currentField": self.square,
+#         }
+#
+#
+# class Rock(Figure):
+#     def __init__(self, square, na_pole, piece=4):
+#         super().__init__(square, na_pole, piece)
+#         self.square = square
+#         self.piece = piece
+#         self.na_pole = na_pole
+#
+#     def symbol_piece(self):
+#         return chess.PieceType(4)  # symbol figury
+#
+#     def to_json(self):
+#         return {
+#             "availableMoves": self.list_available_moves(),
+#             "error": None,
+#             "figure": self.nazwa_figury(),
+#             "currentField": self.square,
+#         }
+#
+#
+# class Bishop(Figure):
+#     def __init__(self, square, na_pole, piece=3):
+#         super().__init__(square, na_pole, piece)
+#         self.square = square
+#         self.piece = piece
+#         self.na_pole = na_pole
+#
+#     def symbol_piece(self):
+#         return chess.PieceType(3)  # symbol figury
+#
+#     def to_json(self):
+#         return {
+#             "availableMoves": self.list_available_moves(),
+#             "error": None,
+#             "figure": self.nazwa_figury(),
+#             "currentField": self.square,
+#         }
+#
+#
+# class Knight(Figure):
+#     def __init__(self, square, na_pole, piece=2):
+#         super().__init__(square, na_pole, piece)
+#         self.square = square
+#         self.piece = piece
+#         self.na_pole = na_pole
+#
+#     def symbol_piece(self):
+#         return chess.PieceType(2)  # symbol figury
+#
+#     def to_json(self):
+#         return {
+#             "availableMoves": self.list_available_moves(),
+#             "error": None,
+#             "figure": self.nazwa_figury(),
+#             "currentField": self.square,
+#         }
+#
+#
+# class Pawn(Figure):
+#     def __init__(self, square, na_pole, piece=1):
+#         super().__init__(square, na_pole, piece)
+#         self.square = square
+#         self.piece = piece
+#         self.na_pole = na_pole
+#
+#     def symbol_piece(self):
+#         return chess.PieceType(1)  # symbol figury
+#
+#     def to_json(self):
+#         return {
+#             "availableMoves": self.list_available_moves(),
+#             "error": None,
+#             "figure": self.nazwa_figury(),
+#             "currentField": self.square,
+#         }
 
 
 # print(krolowa.list_available_moves())
 # print(krolowa.validate_move("a3"))
-
-
 """
 print(board)
 print(board.legal_moves)
