@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, jsonify
 from abc import ABC, abstractmethod
 import chess
 import json
-from io import StringIO
+# from io import StringIO
 
 
 app = Flask(__name__)
@@ -19,12 +19,15 @@ def submit_form():  # reszta do naszego cwiczenia nie potrzebna
     # error = None
     if request.method == 'POST':
         try:
+            # data = request.form
             data = request.form.to_dict()
             pole = data['pole1']+data['pole2'] #request('TAK JAKBY WYSŁANE')
+            data = {
+                'figura': data['figura'],
+                'pole' : pole
+            }
             figura = wszystkie_figury()[data['figura'][0]]
-            return render_template("index.html", krol=krol.unicode_symbol(),
-                           wszystkie=wszystkie_figury())  # , tekst=jsonify({'tasks':
-            # return f'<h1>{pole}{figura} </h1>'  #request('TAK JAKBY WYSŁANE')
+            return data
         except:
             return 'did not save to database'
     else:
@@ -44,10 +47,19 @@ tasks = [
         'done': False
     }
 ]
-
+#############
+@app.route('/todo/api/v1.0/tasks', methods=['GET'])
+def get_tasks():
+    return jsonify({'tasks': tasks})
+################
 
 def wszystkie_figury():
     return chess.UNICODE_PIECE_SYMBOLS
+
+def figura_znak(figura):
+
+    return chess.piece_symbol(figura)
+
 
 
 class Figure(ABC):
@@ -140,7 +152,6 @@ class King(Figure):
 def slownik_to_json(slownik):
     return json.dumps(slownik.to_json())
 
-
 krol = King("a3", "a4")
 board = chess.Board()
 print(krol.list_available_moves(), krol.uci_valide_move())
@@ -150,6 +161,13 @@ print(chess.UNICODE_PIECE_SYMBOLS)
 print( krol.to_json())
 for el in krol.to_json().items():
     print( el )
+print( krol.symbol_piece())
+print( krol.unicode_symbol())
+print(chess.UNICODE_PIECE_SYMBOLS)
+print( chess.piece_name(6))
+print( type(wszystkie_figury() ))
+
+
 
 
 
