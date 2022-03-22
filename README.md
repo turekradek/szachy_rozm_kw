@@ -1,2 +1,10 @@
-# szachy_rozm_kw
-aplikacja sprawdza możliwe ruchy figury szachowej po jej umieszczeniu na dowolnym polu, wskazuje czy ruch na wybrane pole jest możliwy
+SZACHY
+1. ZAINSTALUJ BIBLIOTEKI W PLIKU requirements.txt
+2. URUCHOM W TERMINALU APLIAKCJĘ FLASK ZA POMOCĄ POLECEŃ
+    w cmd
+    set FLASK_APP=szachy
+    flask run
+3. URUCHOM PLIK szachy.py , W TERMINALU POLAWI SIĘ ADRES SERWERA LOKALNEGO
+    http://127.0.0.1:5000
+4. URUCHOMI SIĘ STRONA GŁÓWNA HTML , W FORMULARZU WYBIERZ FIGURĘ I POLE NA KTÓRYM JĄ USTAWIASZ
+5. DALEJ POSTĘPUJ WEDŁUG INSTRUKCJI
