@@ -160,7 +160,7 @@
     <form action="submit_form" method="post" class="reveal-content">
         <div class="row">
             <div class="col-md-7">
-                <h3>wybierz figurę </h3>
+                <h3>wybierz figurę</h3>
                 <div class="form-group">
                     <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
                     <select name="figura" style="width: 25% ; height: 40px;" class="form-control">
@@ -171,85 +171,47 @@
 <!--                        </option>-->
 <!--                        {% endfor %}-->
                         <option value="King" name="king" style="font-size:26px;">{{wszystkie['K']}}</option>{{wybrana_figura}} {{wybrane_pole}}
-
+                        <option value="King_cz" name="king" style="font-size:26px;">{{wszystkie['k']}}</option>
                         <option value="Queen" name="queen"style="font-size:26px;">{{wszystkie['Q']}}</option>
-
+                        <option value="Queen_cz" name="queen"style="font-size:26px;">{{wszystkie['q']}}</option>
                         <option value="Rock" name="rock"style="font-size:26px;">{{wszystkie['R']}}</option>
-
+                        <option value="Rock_cz" name="rock"style="font-size:26px;">{{wszystkie['r']}}</option>
                         <option value="Knight" name="knight"style="font-size:26px;">{{wszystkie['N']}}</option>
-
+                        <option value="Knight_cz" name="knight"style="font-size:26px;">{{wszystkie['n']}}</option>
                         <option value="Bishop" name="bishop"style="font-size:26px;">{{wszystkie['B']}}</option>
-
+                        <option value="Bishop_cz" name="bishop"style="font-size:26px;">{{wszystkie['b']}}</option>
                         <option value="Pawn" name="pawn"style="font-size:26px;">{{wszystkie['P']}}</option>
-
+                        <option value="Pawn_cz" name="pawn"style="font-size:26px;">{{wszystkie['p']}}</option>
                     </select>
                 </div>
-                <div class="formy">
-
-                    <div class="lewy-form" style="float:left; width: 40%" >
-                    <h3>wybierz pole gdzie ustawiasz figure </h3>
-                        <div class="form-group">
-                            <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
-                            <select name="pole1" style="width: 40% ; height: 40px;  class="form-control">
-                                <option value="" disabled selected>wybierz pole gdzie staniesz</option>
-                                <option value="a" name="a">a</option>
-                                <option value="b" name="b">b</option>
-                                <option value="c" name="c">c</option>
-                                <option value="d" name="d">d</option>
-                                <option value="e" name="e">e</option>
-                                <option value="f" name="f">f</option>
-                                <option value="g" name="g">g</option>
-                                <option value="h" name="h">h</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
-                            <select name="pole2" style="width: 40% ; height: 40px;" class="form-control">
-                                <option value="" disabled selected>wybierz pole gdzie staniesz</option>
-                                <option value="1" name="1">1</option>
-                                <option value="2" name="2">2</option>
-                                <option value="3" name="3">3</option>
-                                <option value="4" name="4">4</option>
-                                <option value="5" name="5">5</option>
-                                <option value="6" name="6">6</option>
-                                <option value="7" name="7">7</option>
-                                <option value="8" name="8">8</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="prawy-form" style="float:left; width: 40%">
-                        <h3>sprawdź czy ruch jest możliwy </h3>
-                        <div class="form-group">
-                            <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
-                            <select name="pole3" style="width: 40% ; height: 40px;" class="form-control">
-                                <option value="" disabled selected>wybierz pole na ktore chcesz iść </option>
-                                <option value="a" name="a">a</option>
-                                <option value="b" name="b">b</option>
-                                <option value="c" name="c">c</option>
-                                <option value="d" name="d">d</option>
-                                <option value="e" name="e">e</option>
-                                <option value="f" name="f">f</option>
-                                <option value="g" name="g">g</option>
-                                <option value="h" name="h">h</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
-                            <select name="pole4" style="width: 40%  ; height: 40px;" class="form-control">
-                                <option value="" disabled selected>wybierz pole na ktore chcesz iść</option>
-                                <option value="1" name="1">1</option>
-                                <option value="2" name="2">2</option>
-                                <option value="3" name="3">3</option>
-                                <option value="4" name="4">4</option>
-                                <option value="5" name="5">5</option>
-                                <option value="6" name="6">6</option>
-                                <option value="7" name="7">7</option>
-                                <option value="8" name="8">8</option>
-                            </select>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
+                    <select name="pole1" style="width: 25% ; height: 40px;" class="form-control">
+                        <option value="" disabled selected>wybierz pole gdzie staniesz</option>
+                        <option value="a" name="a">a</option>
+                        <option value="b" name="b">b</option>
+                        <option value="c" name="c">c</option>
+                        <option value="d" name="d">d</option>
+                        <option value="e" name="e">e</option>
+                        <option value="f" name="f">f</option>
+                        <option value="g" name="g">g</option>
+                        <option value="h" name="h">h</option>
+                    </select>
                 </div>
-
+                <div class="form-group">
+                    <!--                      <input name="trener" type="text" class="form-control" id="tre" placeholder="wybierz swojego trenera">-->
+                    <select name="pole2" style="width: 25% ; height: 40px;" class="form-control">
+                        <option value="" disabled selected>wybierz pole gdzie staniesz</option>
+                        <option value="1" name="1">1</option>
+                        <option value="2" name="2">2</option>
+                        <option value="3" name="3">3</option>
+                        <option value="4" name="4">4</option>
+                        <option value="5" name="5">5</option>
+                        <option value="6" name="6">6</option>
+                        <option value="7" name="7">7</option>
+                        <option value="8" name="8">8</option>
+                    </select>
+                </div>
             </div>
             <!-- <div class="form-group">
             <textarea name="message" class="form-control" rows="5" placeholder="Enter your message"></textarea>
