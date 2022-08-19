@@ -4,6 +4,10 @@ SZACHY
     w cmd
     set FLASK_APP=szachy
     flask run
+    LINUX 
+        export FLASK_APP=hello.py
+        export FLASK_ENV=development
+        flask run
 3. URUCHOM PLIK szachy.py , W TERMINALU POLAWI SIĘ ADRES SERWERA LOKALNEGO
     http://127.0.0.1:5000
 4. URUCHOMI SIĘ STRONA GŁÓWNA HTML , W FORMULARZU WYBIERZ FIGURĘ I POLE NA KTÓRYM JĄ USTAWIASZ
