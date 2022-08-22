@@ -3,6 +3,7 @@ SZACHY - POBRALES REPO WIĘC :
     DLA LINUX 
         python3 -m venv venv 
 2. ZAINSTALUJ BIBLIOTEKI W PLIKU requirements.txt
+    pip install -r requirements.txt
 3. URUCHOM W TERMINALU APLIAKCJĘ FLASK ZA POMOCĄ POLECEŃ
     WINDOWS
         w cmd
