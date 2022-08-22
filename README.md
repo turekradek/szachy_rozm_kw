@@ -9,7 +9,7 @@ SZACHY - POBRALES REPO WIĘC :
         set FLASK_APP=szachy
         flask run
     LINUX 
-        export FLASK_APP=hello.py
+        export FLASK_APP=szachy.py
         export FLASK_ENV=development
         flask run
 4. URUCHOM PLIK szachy.py , W TERMINALU POLAWI SIĘ ADRES SERWERA LOKALNEGO
